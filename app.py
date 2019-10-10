@@ -19,7 +19,13 @@ def send_link():
     r = requests.get(url)
     page = r.text  # HTMLp page
     soup = BeautifulSoup(page, 'html.parser')
-    heading = soup.find('h1').text.strip()  # Get page header
+    heading = soup.find('h1').text.strip()
+    for h1 in soup.find_all('h1'):
+        # Get list of <h1> tags and
+        # select <h1> with most word count
+        if len(h1.text) > 5:
+            heading = h1.text.strip()
+            break  # Get page header
     for p in soup.find_all('p'):
         # Get list of <p> tags and
         # select <p> with most word count
