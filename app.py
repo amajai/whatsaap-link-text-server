@@ -17,9 +17,8 @@ def send_link():
     rf = request.json  # Receive link from client
     url = rf['link']
     r = requests.get(url)
-    page = r.text  # HTMLp page
+    page = r.text  # HTML page
     soup = BeautifulSoup(page, 'html.parser')
-    heading = soup.find('h1').text.strip()
     for h1 in soup.find_all('h1'):
         # Get list of <h1> tags and
         # select <h1> with most word count
